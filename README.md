@@ -11,9 +11,7 @@ TypeScript types for Sketch Assistants.
 yarn add @sketch-hq/sketch-assistant-types
 ```
 
-## Documentation
-
-Coming soon.
+> TODO: Link to documentation about developing Assistants.
 
 ## Development
 
