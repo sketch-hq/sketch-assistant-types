@@ -1,5 +1,6 @@
 import { FileFormat3 } from '@sketch-hq/sketch-file-format-ts'
 import { JSONSchema7 } from 'json-schema'
+import { CoreProperties as PackageJson } from '@schemastore/package'
 
 //
 // Misc
@@ -274,6 +275,50 @@ export enum ViolationSeverity {
 //
 
 /**
+ * Type representing the package.json for an Assistant project/package. Extends the standard
+ * package.json spec with a `sketch.assistant` object containing human readable `title` and `description`
+ * strings, an icon path and an `i18n` object of translations for the `title` and `description`. All
+ * properties are defined as optional since package.json files are user supplied, so their contents
+ * cannot be strictly enforced.
+ *
+ * Example
+ *
+ *   {
+ *     "name": "my-assistant",
+ *     "sketch": {
+ *       "assistant": {
+ *         "title": "My Assistant",
+ *         "description": "An example Assistant",
+ *         "icon": "https://www.domain.com/some/hosted/image.png",
+ *         "i18n": {
+ *           "zh-Hans": {
+ *             "title": "...",
+ *             "description": "..."
+ *           }
+ *         }
+ *       }
+ *     },
+ *     ...
+ *   }
+ */
+export type AssistantPackageJson = PackageJson &
+  Partial<{
+    sketch: Partial<{
+      assistant: Partial<{
+        title: string
+        description: string
+        icon: string
+        i18n: Partial<{
+          [locale: string]: Partial<{
+            title: string
+            description: string
+          }>
+        }>
+      }>
+    }>
+  }>
+
+/**
  * Platforms that can run Assistants.
  */
 export type Platform = 'sketch' | 'node'
@@ -336,14 +381,6 @@ export type AssistantDefinition = {
    */
   config: AssistantConfig
   /**
-   * Human readable assistant name, e.g. "Grid of 8"
-   */
-  title: string
-  /**
-   * Longer human readable description for the assistant.
-   */
-  description: string
-  /**
    * Assistant name is the same as its package name, i.e. the `name` property in its `package.json`.
    */
   name: string
@@ -356,9 +393,8 @@ export type AssistantDefinition = {
 export type RuleDefinition = {
   rule: RuleFunction
   /**
-   * The rule name acts as its id and should combine an identifier for the rule with the parent
-   * assistant's name separated by a slash, e.g.
-   * "@sketch-hq/sketch-assistant-recommended/groups-max-layers"
+   * The rule name acts as its unique id and should combine an identifier for the rule with the parent
+   * assistant's name separated by a slash, e.g. "assistant-name/rule-name"
    */
   name: string
   /**
