@@ -276,7 +276,7 @@ export enum ViolationSeverity {
 
 /**
  * Type representing the package.json for an Assistant project/package. Extends the standard
- * package.json spec with a `sketch.assistant` object containing human readable `title` and `description`
+ * package.json spec with a `sketch-assistant` object containing human readable `title` and `description`
  * strings, an icon path and an `i18n` object of translations for the `title` and `description`. All
  * properties are defined as optional since package.json files are user supplied, so their contents
  * cannot be strictly enforced.
@@ -285,16 +285,14 @@ export enum ViolationSeverity {
  *
  *   {
  *     "name": "my-assistant",
- *     "sketch": {
- *       "assistant": {
- *         "title": "My Assistant",
- *         "description": "An example Assistant",
- *         "icon": "https://www.domain.com/some/hosted/image.png",
- *         "i18n": {
- *           "zh-Hans": {
- *             "title": "...",
- *             "description": "..."
- *           }
+ *     "sketch-assistant": {
+ *       "title": "My Assistant",
+ *       "description": "An example Assistant",
+ *       "icon": "https://www.domain.com/some/hosted/image.png",
+ *       "i18n": {
+ *         "zh-Hans": {
+ *           "title": "...",
+ *           "description": "..."
  *         }
  *       }
  *     },
@@ -303,16 +301,14 @@ export enum ViolationSeverity {
  */
 export type AssistantPackageJson = PackageJson &
   Partial<{
-    sketch: Partial<{
-      assistant: Partial<{
-        title: string
-        description: string
-        icon: string
-        i18n: Partial<{
-          [locale: string]: Partial<{
-            title: string
-            description: string
-          }>
+    'sketch-assistant': Partial<{
+      title: string
+      description: string
+      icon: string
+      i18n: Partial<{
+        [locale: string]: Partial<{
+          title: string
+          description: string
         }>
       }>
     }>
