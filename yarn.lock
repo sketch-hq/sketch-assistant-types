@@ -233,6 +233,11 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
+"@schemastore/package@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@schemastore/package/-/package-0.0.5.tgz#67b621d5c833ad2d5a29a1acf868717b7839bb8a"
+  integrity sha512-0XEiMT/Rh8I0SEIO81fo5MN3AHhONFv9SJ1IIJ5OTI3PN/jG032OPlHUMxvrun7yc6YUGtufVg2WPQVK8PaH5Q==
+
 "@sketch-hq/sketch-file-format-ts@4.0.3":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@sketch-hq/sketch-file-format-ts/-/sketch-file-format-ts-4.0.3.tgz#4f2c44e7a61622e977e40bd89d67ab2f9fe5f95f"
