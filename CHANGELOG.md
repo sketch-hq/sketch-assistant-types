@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-types
 
+## 2.0.1
+
+### Patch Changes
+
+- 0aeb5e7: Rename Assistant package.json config property to `sketch-assistant`
+
 ## 2.0.0
 
 ### Major Changes
