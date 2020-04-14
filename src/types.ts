@@ -301,14 +301,44 @@ export enum ViolationSeverity {
  */
 export type AssistantPackageJson = PackageJson &
   Partial<{
+    /**
+     * The Sketch equivalent to the standard package.json `main` property. Used for indicating the
+     * JavaScript entrypoint Sketch should use when running the Assistant in its JavaScriptCore
+     * environment. Note that unlike a Node environment which supports CommonJS modules via the
+     * `require` function, Sketch's JavaScript environment does not include any module system, so
+     * entrypoints for Sketch referenced via this `sketch` property must be bundled into a single
+     * file in a similar way to a web app, typically using Webpack. Also note that Sketch's
+     * JavaScriptCore environment is based on modern WebKit (minus the browser APIs), so files
+     * should only need to be transpiled down to ES6 at the most.
+     */
+    sketch: string
+    /**
+     * Object containing configuration specific to the Assistant.
+     */
     'sketch-assistant': Partial<{
+      /**
+       * Human readable Assistant title for display in Sketch.
+       */
       title: string
+      /**
+       * Human readable Assistant description for display in Sketch.
+       */
       description: string
+      /**
+       * Assistant icon/image for display in Sketch. Should be a fully qualified uri to a publically
+       * hosted image file.
+       */
       icon: string
+      /**
+       * Optional object to contain internationalised versions of the above strings. If this object
+       * is present, and contains strings for Sketch's currently active locale, then those will be
+       * used in preference.
+       */
       i18n: Partial<{
         [locale: string]: Partial<{
           title: string
           description: string
+          icon: string
         }>
       }>
     }>
