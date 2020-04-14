@@ -30,9 +30,7 @@ package you can safely ignore this.
 #### Conventional commits
 
 Try and use the [conventional commits](https://www.conventionalcommits.org/) convention when writing
-commit messages. This isn't enforced, but you can use the `yarn commit` command (in place of
-`git commit -m "foo"`) to open an interactive CLI to walk you through generating a properly
-formatted commit message.
+commit messages.
 
 #### Releases
 
