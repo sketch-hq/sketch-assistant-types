@@ -132,8 +132,8 @@ export type ProcessedSketchFile = {
  */
 export type RunOperation =
   | {
-    cancelled: boolean
-  }
+      cancelled: boolean
+    }
   | { cancelled: 1 | 0 }
 
 /**
@@ -183,7 +183,7 @@ export type RuleUtilsCreator = (ruleName: string) => RuleUtils
 
 /**
  * A function that when invoked repeatedly calls its callback for each of a Node’s parents
- * until it reaches the document root, at wich point it stops.
+ * until it reaches the document root, at which point it stops.
  */
 export type ParentIterator = (
   node: Maybe<PointerValue>,
@@ -444,8 +444,6 @@ export type AssistantConfig = {
 export enum ReservedRuleOptionNames {
   active = 'active',
   severity = 'severity',
-  ignoreClasses = 'ignoreClasses',
-  ignoreNames = 'ignoreNames',
 }
 
 /**
@@ -461,16 +459,6 @@ export type RuleConfig = {
    * The severity of any violations reported by the rule.
    */
   [ReservedRuleOptionNames.severity]?: ViolationSeverity
-  /**
-   * Violations associated with Nodes with `_class` values listed here will be filtered out of the
-   * final result set.
-   */
-  [ReservedRuleOptionNames.ignoreClasses]?: SketchClass[]
-  /**
-   * Violations associated with Nodes with name paths that match the regexes listed here will be
-   * filtered out of the final result set.
-   */
-  [ReservedRuleOptionNames.ignoreNames]?: string[]
   /**
    * Rule custom options will also appear mixed into this object.
    */
