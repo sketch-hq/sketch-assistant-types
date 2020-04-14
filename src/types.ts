@@ -23,7 +23,7 @@ export type SketchClass = FileFormat3.AnyObject['_class']
 
 /**
  * Utility function for gathering metadata about Sketch file images. Is isomorphic in the sense that
- * its signature shound't change across platforms.
+ * its signature shouldn’t change across platforms.
  */
 export type GetImageMetadata = (ref: string, filepath: string) => Promise<ImageMetadata>
 
@@ -63,7 +63,7 @@ export type Node<T = FileFormat3.AnyObject> = T & {
 }
 
 /**
- * Array of Nodes. An concrete example of this in a Sketch file is a group's `layers` array.
+ * Array of Nodes. A concrete example of this in a Sketch file is a group’s `layers` array.
  */
 export interface NodeArray extends Array<Node> {
   $pointer: string
@@ -90,7 +90,7 @@ export type PointerValue =
 export type NodeCacheVisitor = (data: Node) => Promise<void>
 
 /**
- * Rules supply a cache iterator config to register vistor functions against the specific object
+ * Rules supply a cache iterator config to register visitor functions against the specific object
  * types available in the cache.
  */
 export type NodeCacheIteratorConfig = {
@@ -112,7 +112,7 @@ export type NodeCache = {
 } & { [key in SketchClass]?: Node[] }
 
 /**
- * A processed Sketch file is one that has has had its objects cached into a NodeCache, and JSON
+ * A processed Sketch file is one that has had its objects cached into a NodeCache, and JSON
  * Pointers injected.
  */
 export type ProcessedSketchFile = {
@@ -132,8 +132,8 @@ export type ProcessedSketchFile = {
  */
 export type RunOperation =
   | {
-      cancelled: boolean
-    }
+    cancelled: boolean
+  }
   | { cancelled: 1 | 0 }
 
 /**
@@ -147,8 +147,8 @@ export type PlainRuleError = {
 }
 
 /**
- * The result of running an assistant. One or more `violations` implies the assistant's rules found
- * issues with the Sketch document. One or more `errors` implies that some rules didn't run because
+ * The result of running an assistant. One or more `violations` implies the assistant’s rules found
+ * issues with the Sketch document. One or more `errors` implies that some rules didn’t run because
  * they encountered errors. Metadata (`title`, `description` etc) relating to the Assistant that
  * produced the result, and the rules that were invoked is also provided
  */
@@ -182,7 +182,7 @@ export type RuleContext = {
 export type RuleUtilsCreator = (ruleName: string) => RuleUtils
 
 /**
- * A function that when invoked repeatedly calls its callback for each of a Node's parents
+ * A function that when invoked repeatedly calls its callback for each of a Node’s parents
  * until it reaches the document root, at wich point it stops.
  */
 export type ParentIterator = (
@@ -191,7 +191,7 @@ export type ParentIterator = (
 ) => void
 
 /**
- * Object contain utilties to be used within rule functions.
+ * Object contain utilities to be used within rule functions.
  */
 export type RuleUtils = {
   /**
@@ -203,12 +203,12 @@ export type RuleUtils = {
    */
   iterateCache: (config: NodeCacheIteratorConfig) => Promise<void>
   /**
-   * Iterate back through the Node's parents to the Sketch file root.
+   * Iterate back through the Node’s parents to the Sketch file root.
    */
   iterateParents: ParentIterator
   /**
-   * Get a rule option value by name. Throws if the rule hasn't been configured in the assistant.
-   * It's essential that every rule activated in an assistant is properly configured.
+   * Get a rule option value by name. Throws if the rule hasn’t been configured in the assistant.
+   * It’s essential that every rule activated in an assistant is properly configured.
    */
   getOption: (option: string) => Maybe<RuleOption>
   /**
@@ -235,7 +235,7 @@ export type RuleUtils = {
    */
   get: (pointer: string) => Maybe<PointerValue>
   /**
-   * Resolve a JSON Pointer to a document object's parent.
+   * Resolve a JSON Pointer to a document object’s parent.
    */
   parent: (pointer: string) => Maybe<PointerValue>
 }
@@ -324,9 +324,9 @@ export type Platform = 'sketch' | 'node'
  */
 export type AssistantEnv = {
   /**
-   * Language tag indicating the current user's locale. Use this to optionally internationalize your
-   * assistant's content. Its exact value is not guaranteed, so an appropriate fallback locale should
-   * always be used for unrecognised values. For assistants running in Sketch it's value is likely
+   * Language tag indicating the current user’s locale. Use this to optionally internationalize your
+   * assistant’s content. Its exact value is not guaranteed, so an appropriate fallback locale should
+   * always be used for unrecognised values. For assistants running in Sketch it’s value is likely
    * to be either `en` or `zh-Hans`.
    */
   locale: string | undefined
@@ -383,14 +383,14 @@ export type AssistantDefinition = {
 }
 
 /**
- * Canonical rule defintion combining the rule function, its option schema creator with other
+ * Canonical rule definition combining the rule function, its option schema creator with other
  * basic metadata.
  */
 export type RuleDefinition = {
   rule: RuleFunction
   /**
    * The rule name acts as its unique id and should combine an identifier for the rule with the parent
-   * assistant's name separated by a slash, e.g. "assistant-name/rule-name"
+   * assistant’s name separated by a slash, e.g. "assistant-name/rule-name"
    */
   name: string
   /**
@@ -417,7 +417,7 @@ export type RuleDefinition = {
 }
 
 /**
- * A map of rule configs, keyed by the rule's name.
+ * A map of rule configs, keyed by the rule’s name.
  */
 export type RuleConfigGroup = {
   [ruleName: string]: Maybe<RuleConfig>
@@ -428,7 +428,7 @@ export type RuleConfigGroup = {
  */
 export type AssistantConfig = {
   /**
-   * Default severity to be used for violations raised by rules that haven't been configured with
+   * Default severity to be used for violations raised by rules that haven’t been configured with
    * their own explicit severity level.
    */
   defaultSeverity?: Maybe<ViolationSeverity>
