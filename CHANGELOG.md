@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-types
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- d90b967: Remove config-level ignore options `ignoreNames` and `ignoreClasses`.
+
 ## 2.0.1
 
 ### Patch Changes
