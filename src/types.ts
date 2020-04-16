@@ -158,7 +158,7 @@ export type RunResult = {
   metadata: {
     assistant: Omit<AssistantDefinition, 'rules'>
     rules: {
-      [ruleName: string]: Omit<RuleDefinition, 'rule' | 'getOptions' | 'name'>
+      [ruleName: string]: Omit<RuleDefinition, 'rule' | 'getOptions'>
     }
   }
 }
