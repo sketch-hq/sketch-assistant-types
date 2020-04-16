@@ -5,6 +5,7 @@
     "@sketch-hq/sketch-assistant-types": "2.0.1"
   },
   "changesets": [
+    "healthy-pears-swim",
     "little-squids-worry"
   ]
 }

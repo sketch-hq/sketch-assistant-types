@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-types
 
+## 3.0.0-next.1
+
+### Patch Changes
+
+- 8aa3b4a: Include rule name in Assistant RunResult metadata
+
 ## 3.0.0-next.0
 
 ### Major Changes
