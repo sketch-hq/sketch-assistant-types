@@ -147,25 +147,39 @@ export type PlainRuleError = {
 }
 
 /**
- * The result of running an assistant. One or more `violations` implies the assistant’s rules found
- * issues with the Sketch document. One or more `errors` implies that some rules didn’t run because
- * they encountered errors. Metadata (`title`, `description` etc) relating to the Assistant that
- * produced the result, and the rules that were invoked is also provided
+ * The result of running an assistant.
  */
-export type RunResult = {
+export type AssistantResult = {
+  /**
+   * One or more `violations` implies the assistant’s rules found issues with the Sketch document.
+   */
   violations: Violation[]
+  /**
+   * One or more `errors` implies that some rules didn’t run because they encountered errors.
+   */
   errors: PlainRuleError[]
+  /**
+   * Metadata relating to the Assistant that produced the result, and the rules that were invoked.
+   */
   metadata: {
-    assistant: Omit<AssistantDefinition, 'rules'>
+    assistant: {
+      config: AssistantConfig
+      name: string
+    }
     rules: {
-      [ruleName: string]: Omit<RuleDefinition, 'rule' | 'getOptions'>
+      [ruleName: string]: {
+        name: string
+        title: string
+        description: string
+        debug: boolean
+        platform: Platform
+      }
     }
   }
 }
 
 /**
- * Contains all the values and utils exposed to individual rule functions. The
- * values are scoped to the rule itself, to simplify the API surface.
+ * Contains all the values and utils exposed to individual rule functions.
  */
 export type RuleContext = {
   utils: RuleUtils
@@ -191,7 +205,9 @@ export type ParentIterator = (
 ) => void
 
 /**
- * Object contain utilities to be used within rule functions.
+ * Object containing utilities passed into rule functions. Where needed the util functions are
+ * scoped to the current rule, e.g. `report` reports a violation for the current rule and
+ * `getOption` retrieves an option value for the current rule etc.
  */
 export type RuleUtils = {
   /**
@@ -424,13 +440,15 @@ export type RuleDefinition = {
    */
   name: string
   /**
-   * Human readable title for the rule, e.g. "Groups Max Layers".
+   * Human readable title for the rule. Can either be a string e.g. "Groups should not be empty", or
+   * a function that returns a string, whicg enables the title to interpolate configuration values
+   * e.g. "Maximum height is 44px".
    */
-  title: string
+  title: string | ((ruleConfig: RuleConfig) => string)
   /**
    * Longer human readable description for the rule.
    */
-  description: string
+  description: string | ((ruleConfig: RuleConfig) => string)
   /**
    * Rules that require options (i.e. are not just simply "on" or "off") need to describe the schema
    * for those options by implementing this function
