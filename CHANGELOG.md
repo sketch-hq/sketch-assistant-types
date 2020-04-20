@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-types
 
+## 3.0.0-next.2
+
+### Minor Changes
+
+- d696d99: Allow rule titles and descriptions to interpolate config values.
+
 ## 3.0.0-next.1
 
 ### Patch Changes
