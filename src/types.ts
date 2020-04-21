@@ -487,11 +487,12 @@ export type AssistantConfig = {
 }
 
 /**
- * Custom rule options with these names are forbidden.
+ * User-defined rule options with these names are forbidden.
  */
 export enum ReservedRuleOptionNames {
   active = 'active',
   severity = 'severity',
+  ruleTitle = 'ruleTitle',
 }
 
 /**
@@ -504,11 +505,19 @@ export type RuleConfig = {
    */
   [ReservedRuleOptionNames.active]: boolean
   /**
-   * The severity of any violations reported by the rule.
+   * Optional custom severity for violations reported by the rule. If omitted the default severity is
+   * used instead.
    */
   [ReservedRuleOptionNames.severity]?: ViolationSeverity
   /**
-   * Rule custom options will also appear mixed into this object.
+   * Optional custom rule title to replace the title defined by the RuleDefinition. Can be used to
+   * supply descriptive rule titles that can only be defined alongside configuration - for example
+   * to title a rule "Page names should start with emojis" alongside regex patterns that enforces
+   * the same.
+   */
+  [ReservedRuleOptionNames.ruleTitle]?: string
+  /**
+   * User-defined rule option are mixed into this object.
    */
   [key: string]: Maybe<RuleOption>
 }
