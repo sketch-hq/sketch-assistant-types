@@ -1,5 +1,12 @@
 # @sketch-hq/sketch-assistant-types
 
+## 3.0.0-next.3
+
+### Patch Changes
+
+- c0d835b: Make package public
+- 98abfc9: Add `ruleTitle` as an official reserved rule option name
+
 ## 3.0.0-next.2
 
 ### Minor Changes
