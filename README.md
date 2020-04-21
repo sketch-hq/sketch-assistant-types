@@ -8,10 +8,8 @@ TypeScript types for Sketch Assistants.
 ## Usage
 
 ```sh
-yarn add @sketch-hq/sketch-assistant-types
+yarn add @sketch-hq/sketch-assistant-types@next
 ```
-
-> TODO: Link to documentation about developing Assistants.
 
 ## Development
 
