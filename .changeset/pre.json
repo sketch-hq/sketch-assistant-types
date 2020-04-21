@@ -5,8 +5,10 @@
     "@sketch-hq/sketch-assistant-types": "2.0.1"
   },
   "changesets": [
+    "great-seas-travel",
     "healthy-pears-swim",
     "little-squids-worry",
-    "lovely-turtles-whisper"
+    "lovely-turtles-whisper",
+    "moody-ears-wait"
   ]
 }
