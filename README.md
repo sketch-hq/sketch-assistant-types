@@ -11,6 +11,8 @@ TypeScript types for Sketch Assistants.
 yarn add @sketch-hq/sketch-assistant-types@next
 ```
 
+> ⚠️ The package is in pre-release mode using the `next` tag.
+
 ## Development
 
 This section of the readme is related to developing the package. If you just want to consume the
