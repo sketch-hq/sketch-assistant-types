@@ -1,5 +1,12 @@
 # @sketch-hq/sketch-assistant-types
 
+## 3.0.0-next.4
+
+### Patch Changes
+
+- 111b641: Fix AssistantPackageExport type to handle Assistants that may be exported as ES Modules
+  at the top level
+
 ## 3.0.0-next.3
 
 ### Patch Changes
