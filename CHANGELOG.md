@@ -1,5 +1,11 @@
 # @sketch-hq/sketch-assistant-types
 
+## 3.0.0-next.5
+
+### Minor Changes
+
+- 7f1ef34: New function types for style equality comparison were added to the RuleUtils type
+
 ## 3.0.0-next.4
 
 ### Patch Changes
