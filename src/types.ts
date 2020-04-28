@@ -268,6 +268,22 @@ export type RuleUtils = {
    * Resolve a JSON Pointer to a document object’s parent.
    */
   parent: (pointer: string) => Maybe<PointerValue>
+  /**
+   * Compares two style objects for equality.
+   */
+  styleEq: (s1: FileFormat3.Style | undefined, s2: FileFormat3.Style | undefined) => boolean
+  /**
+   * Compares two text style objects for equality.
+   */
+  textStyleEq: (s1: FileFormat3.Style | undefined, s2: FileFormat3.Style | undefined) => boolean
+  /**
+   * Reduces a text style object into a string hash and returns it.
+   */
+  textStyleHash: (style: Partial<FileFormat3.Style> | undefined) => string
+  /**
+   * Reduces a style object into a string hash and returns it.
+   */
+  styleHash: (style: Partial<FileFormat3.Style> | undefined) => string
 }
 
 /**
