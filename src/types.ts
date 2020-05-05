@@ -284,6 +284,31 @@ export type RuleUtils = {
    * Reduces a style object into a string hash and returns it.
    */
   styleHash: (style: Partial<FileFormat3.Style> | undefined) => string
+  /**
+   * Cache iteration API.
+   * Each attribute on iterators returns an iterator through the corresponding
+   * NodeCache property.
+   */
+  iterators: CacheGenerators
+}
+
+/**
+ * Cache Generators define a generator for each NodeCache attribute
+ * This can then be used to iterate through those NodeCache values
+ * All NodeCache attributes are promoted to Required because this is
+ * intended to be used within a Proxy that will yield no values if
+ * then handler does not find the NodeCache attribute.
+ */
+type CacheGenerators = {
+  [key in keyof Required<NodeCache>]: Generator<Node>
+}
+
+/**
+ * Helper type for the iterators Proxy constructor
+ * It sets the type vars for the target ({}) and Handler (CacheGenerators)
+ */
+export interface IteratorsProxyConstructor {
+  new (target: {}, handler: ProxyHandler<CacheGenerators>): CacheGenerators
 }
 
 /**
@@ -371,7 +396,7 @@ export type AssistantPackageJson = PackageJson &
        */
       description: string
       /**
-       * Assistant icon/image for display in Sketch. Should be a fully qualified uri to a publically
+       * Assistant icon/image for display in Sketch. Should be a fully qualified uri to a publicly
        * hosted image file.
        */
       icon: string
@@ -402,7 +427,7 @@ export type AssistantEnv = {
   /**
    * Language tag indicating the current user’s locale. Use this to optionally internationalize your
    * assistant’s content. Its exact value is not guaranteed, so an appropriate fallback locale should
-   * always be used for unrecognised values. For assistants running in Sketch it’s value is likely
+   * always be used for unrecognized values. For assistants running in Sketch it’s value is likely
    * to be either `en` or `zh-Hans`.
    */
   locale: string | undefined
@@ -462,7 +487,7 @@ export type RuleDefinition = {
   name: string
   /**
    * Human readable title for the rule. Can either be a string e.g. "Groups should not be empty", or
-   * a function that returns a string, whicg enables the title to interpolate configuration values
+   * a function that returns a string, which enables the title to interpolate configuration values
    * e.g. "Maximum height is 44px".
    */
   title: string | ((ruleConfig: RuleConfig) => string)
